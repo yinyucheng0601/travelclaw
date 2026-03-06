@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>皮皮猪状态面板 🦞</title>
+    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff6b6b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div class="viewport">
+        <div class="bg-layer"></div>
+        <div class="content-layer">
+            <div class="hero"></div>
+            
+            <div class="status-card">
+                <div class="card-body">
+                <div class="status-grid">
+            <!-- 基础信息 -->
+            
+            
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="status-content">
+                    <div class="status-label">当前模型</div>
+                    <div class="status-value" id="model-info">deepseek/deepseek-chat</div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-signal"></i>
+                </div>
+                <div class="status-content">
+                    <div class="status-label">在线状态</div>
+                    <div class="status-value online">
+                        <span class="status-dot"></span>
+                        运行中
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 运行信息 -->
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="status-content">
+                    <div class="status-label">运行时间</div>
+                    <div class="status-value" id="uptime">2小时15分钟</div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="status-content">
+                    <div class="status-label">任务队列</div>
+                    <div class="status-value" id="task-queue">0个待处理</div>
+                </div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="status-content">
+                    <div class="status-label">API调用</div>
+                    <div class="status-value" id="api-calls">今日: 42次</div>
+                </div>
+            </div>
+            
+            <!-- 系统信息 -->
+            <div class="status-item">
+                <div class="status-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="status-content">
+                    <div class="status-label">运行环境</div>
+                    <div class="status-value">macOS · OpenClaw</div>
+                </div>
+            </div>
+           
+            
+            <!-- 技能信息（放在最后，独占一行） -->
+            <div class="status-item full-width">
+                <div class="status-content">
+                    <div class="status-label">可用技能</div>
+                    <div class="status-value">15个已加载</div>
+                    <div class="skills-list">
+                        <span class="skill-tag">QVeris</span>
+                        <span class="skill-tag">Apple Notes</span>
+                        <span class="skill-tag">飞书集成</span>
+                        <span class="skill-tag">股票分析</span>
+                        <span class="skill-tag">财经早报</span>
+                        <span class="skill-tag">更多...</span>
+                    </div>
+                </div>
+            </div>
+                </div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-buttons"></div>
+            </div>
+            
+            <!-- 模型切换模态框 -->
+            <div class="modal" id="model-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-exchange-alt"></i> 切换模型</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="model-option active">
+                            <div class="model-info">
+                                <div class="model-name">deepseek/deepseek-chat</div>
+                                <div class="model-desc">默认模型 · 中文优化</div>
+                            </div>
+                            <div class="model-status">
+                                <span class="status-dot active"></span>
+                                当前使用
+                            </div>
+                        </div>
+                        <div class="model-option">
+                            <div class="model-info">
+                                <div class="model-name">gmn/gpt-5.3-codex</div>
+                                <div class="model-desc">GPT模型 · 代码优化</div>
+                            </div>
+                            <div class="model-status">
+                                <button class="select-btn">切换</button>
+                            </div>
+                        </div>
+                        <div class="model-option">
+                            <div class="model-info">
+                                <div class="model-name">gemini/gemini-2.0-flash</div>
+                                <div class="model-desc">Google模型 · 搜索优化</div>
+                            </div>
+                            <div class="model-status">
+                                <button class="select-btn">切换</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="modal-btn secondary" id="cancel-model">取消</button>
+                        <button class="modal-btn primary" id="confirm-model">确认切换</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="version-sticky">
+                v1.0 · 旅行的龙虾 🦞
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js?v=5"></script>
+</body>
+</html>
