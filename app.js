@@ -24,6 +24,45 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmModelBtn = document.getElementById('confirm-model');
     const closeModalBtn = document.querySelector('.close-modal');
     const heroEl = document.querySelector('.hero');
+    const bgUrl = 'assets/bg.png';
+    let bgNaturalW = null;
+    let bgNaturalH = null;
+    
+    function setBgUsableWidthVar() {
+        const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight || 0;
+        if (!vh) return;
+        let scaledWidth;
+        if (bgNaturalW && bgNaturalH) {
+            const scale = vh / bgNaturalH;
+            scaledWidth = bgNaturalW * scale;
+        } else {
+            // 回退：使用视口宽度
+            scaledWidth = (window.visualViewport && window.visualViewport.width) || window.innerWidth;
+        }
+        const px = Math.max(0, Math.floor(scaledWidth));
+        document.documentElement.style.setProperty('--bg-width-px', px + 'px');
+    }
+    
+    function initBgMetrics() {
+        const img = new Image();
+        img.onload = function() {
+            bgNaturalW = img.naturalWidth;
+            bgNaturalH = img.naturalHeight;
+            setBgUsableWidthVar();
+        };
+        img.src = bgUrl;
+        if (img.complete) {
+            bgNaturalW = img.naturalWidth;
+            bgNaturalH = img.naturalHeight;
+            setBgUsableWidthVar();
+        }
+        // 监听尺寸变化
+        window.addEventListener('resize', setBgUsableWidthVar);
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', setBgUsableWidthVar);
+        }
+        window.addEventListener('orientationchange', setBgUsableWidthVar);
+    }
     
     function attachHero() {
         if (!heroEl) return;
@@ -45,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function initStatus() {
         updateStatusDisplay();
         refreshStatus();
+        initBgMetrics();
         if (navigator.onLine) {
             attachHero();
         } else {
