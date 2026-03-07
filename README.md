@@ -11,7 +11,6 @@
 - 📱 **PWA支持** - 可安装到手机主屏幕
 
 ## 技术栈
-
 - HTML5
 - CSS3 (Flexbox, Grid, CSS Variables)
 - Vanilla JavaScript (ES6+)
@@ -19,8 +18,6 @@
 - PWA (Web App Manifest)
 
 ## 项目结构
-
-```
 travelclaw/
 ├── index.html          # 主页面（包含背景图片）
 ├── styles.css          # 样式文件
@@ -32,8 +29,18 @@ travelclaw/
     └── assets/           # 静态资源
 ```
 
-## 🛠️ 基于此项目的 OpenClaw Skill
+## 替换资源图片（GitHub 网页操作）
+- 打开仓库 → assets 目录。
+- 替换背景图：上传 bg.png 覆盖旧文件。推荐竖图，至少 1080×1920，PNG/JPG 均可。
+- 替换小龙虾：上传 claw.png 覆盖旧文件。建议 120×120、带透明背景的 PNG。
+- 提交到 main 分支后等待 GitHub Pages 生效（通常 1–10 分钟）。
+- 如遇到缓存未刷新：强制刷新页面或在链接后加 `?v=时间戳`。
+- 若使用了不同文件名：
+  - 修改 styles.css 中背景路径为新文件名（.bg-layer 的 background）。
+  - 修改 app.js 中小龙虾路径为新文件名（assets/…）。
+  - 保存并推送后生效。
 
+## 🛠️ 基于此项目的 OpenClaw Skill
 这个项目展示了如何通过 OpenClaw 快速创建移动 Web 应用。基于这个经验，我们创建了一个完整的 OpenClaw Skill：
 
 ### Mobile WebApp Creator Skill 🚀
